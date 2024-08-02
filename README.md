@@ -17,8 +17,9 @@ This project build command line tool name gfm for manager file
 gfm [command] [arg1] [arg2]
 ```
 
-Just use like linux command but have gfm in front 
-Like: 
+Just use like linux command but have gfm in front.
+
+Ex: 
 ```sh
 $ gfm ls
 $ gfm pwd

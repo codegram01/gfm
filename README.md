@@ -31,13 +31,13 @@ $ gfm rm abc.txt
 # Install
 - install Golang
 - Install Binary: `go install github.com/codegram01/gfm@latest`
-Command gfm will available in your path
 
 # Install from source
 - install Golang
 - Clone and cd to source code
 - Run: `go run .` + [command] + [arg...]
 - Build: `go build .`
+
 Command gfm will available in your path
 
 

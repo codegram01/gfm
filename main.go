@@ -29,8 +29,8 @@ func execCommand() error {
 		}
 		fmt.Printf("Name: %s\nSize: %d\nMode: %s,\nIsDir: %t\nModification: %s\n",
 			fileInfo.Name(),
-			fileInfo.Size(), 
-			fileInfo.Mode(), 
+			fileInfo.Size(),
+			fileInfo.Mode(),
 			fileInfo.IsDir(),
 			fileInfo.ModTime(),
 		)

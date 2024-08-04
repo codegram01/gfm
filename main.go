@@ -8,6 +8,9 @@ import (
 )
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprint(os.Stderr, helpMess)
+	}
 	log.SetFlags(0) // hide timestamp
 	// to read arg by flag, we must parse first
 	flag.Parse()
@@ -19,7 +22,7 @@ func main() {
 }
 
 func execCommand() error {
-	command := getArg(0, "Enter command")
+	command := getArg(0, helpMess)
 	switch command {
 	case "info":
 		path := getArg(1, "Enter path")
@@ -89,7 +92,7 @@ func execCommand() error {
 
 		return os.WriteFile(path, []byte(content), 0777)
 	default:
-		log.Fatal("Unknow command")
+		fmt.Print(helpMess)
 	}
 	return nil
 }

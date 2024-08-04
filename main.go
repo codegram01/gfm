@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	log.SetFlags(0) // hide timestamp
 	// to read arg by flag, we must parse first
 	flag.Parse()
 
@@ -43,7 +44,7 @@ func execCommand() error {
 		path2 := getArg(2, "Enter path 2")
 
 		return os.Rename(path1, path2)
-	case "mkdir":
+	case "mkdir": // create dir
 		path := getArg(1, "Enter Dir")
 		return os.MkdirAll(path, 0777)
 	case "cat":
@@ -53,12 +54,12 @@ func execCommand() error {
 			return err
 		}
 		os.Stdout.Write(data)
-	case "touch":
+	case "touch": // create empty file
 		path := getArg(1, "Enter path")
 		
 		_, err := os.Create(path)
 		return err
-	case "cp":
+	case "cp": // copy file
 		// path old file
 		path1 := getArg(1, "Enter path 1")
 		// path new file
@@ -69,15 +70,14 @@ func execCommand() error {
 			return err
 		}
 		return os.WriteFile(path2, data, 0777)
-	case "echo":
+	case "echo": // add content to file
 		content := getArg(1, "Enter content")
 		path := getArg(2, "Enter path")
-
-
+		
 		return os.WriteFile(path, []byte(content), 0777)
+	default:
+		log.Fatal("Unknow command")
 	}
-
-
 	return nil
 }
 

@@ -21,6 +21,19 @@ func main() {
 func execCommand() error {
 	command := getArg(0, "Enter command")
 	switch command {
+	case "info":
+		path := getArg(1, "Enter path")
+		fileInfo, err := os.Stat(path)
+		if err != nil {
+			return err
+		}
+		fmt.Printf("Name: %s\nSize: %d\nMode: %s,\nIsDir: %t\nModification: %s\n",
+			fileInfo.Name(),
+			fileInfo.Size(), 
+			fileInfo.Mode(), 
+			fileInfo.IsDir(),
+			fileInfo.ModTime(),
+		)
 	case "ls": // list file
 		files, err := os.ReadDir(".")
 		if err != nil {
@@ -39,7 +52,7 @@ func execCommand() error {
 			return err
 		}
 		fmt.Println(currentPath)
-	case "mv": // move file 
+	case "mv": // move file
 		path1 := getArg(1, "Enter path 1")
 		path2 := getArg(2, "Enter path 2")
 
@@ -56,7 +69,7 @@ func execCommand() error {
 		os.Stdout.Write(data)
 	case "touch": // create empty file
 		path := getArg(1, "Enter path")
-		
+
 		_, err := os.Create(path)
 		return err
 	case "cp": // copy file
@@ -73,7 +86,7 @@ func execCommand() error {
 	case "echo": // add content to file
 		content := getArg(1, "Enter content")
 		path := getArg(2, "Enter path")
-		
+
 		return os.WriteFile(path, []byte(content), 0777)
 	default:
 		log.Fatal("Unknow command")
